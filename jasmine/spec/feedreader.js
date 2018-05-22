@@ -74,6 +74,29 @@ $(function () {
             expect(isMenuHidden).toBe(true);
         });
 
+
+        it('changes visibility', function () {
+            var test1Result = 'Hidden',
+                test2Result = 'notHidden';
+
+            document.querySelector('.menu-icon-link').click();
+
+            if (!document.querySelector('body').classList.contains("menu-hidden")) {
+                test1Result = 'notHidden';
+            }
+
+            document.querySelector('.menu-icon-link').click();
+
+            if (document.querySelector('body').classList.contains("menu-hidden")) {
+                test2Result = 'Hidden';
+            }
+
+            expect(test1Result).toBe('notHidden');
+            expect(test2Result).toBe('Hidden');
+
+
+        });
+
     });
 
 
