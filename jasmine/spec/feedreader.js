@@ -116,30 +116,17 @@ $(function () {
      * the use of Jasmine's beforeEach and asynchronous done() function.
      */
 
+
     describe('Initial Entries', function () {
-
-        // var feedLength;
-
-        // var feedLength = document.querySelectorAll('.feed .entry-link').length;
-        // console.log(feedLength);
-        // expect(feedLength).toBeGreaterThan(1);
-
         beforeEach(function (done) {
-            loadFeed(function () {
-                done();
-            });
-
+            loadFeed(0, done);
         });
 
-        it('has atleast one feed loaded', function (done) {
+        it('has atleast one initial element', function () {
             var feedLength = document.querySelectorAll('.feed .entry-link').length;
-            expect(feedLength).toBeGreaterThan(1);
-            done();
+            expect(feedLength).toBeGreaterThan(0);
         });
-
-
     });
-
 
 
     /* TODO: Write a new test suite named "New Feed Selection" */
@@ -148,4 +135,22 @@ $(function () {
      * by the loadFeed function that the content actually changes.
      * Remember, loadFeed() is asynchronous.
      */
+
+    describe('New Feed Selection', function () {
+
+        var firstFeed, latestFeed;
+        beforeEach(function (done) {
+            loadFeed(0, function () {
+                firstFeed = document.querySelector('.feed').innerHTML;
+                loadFeed(1, done);
+            });
+        });
+
+        it('content changes on loading new feed', function () {
+            latestFeed = document.querySelector('.feed').innerHTML;
+            expect(latestFeed).not.toEqual(firstFeed);
+
+        });
+    });
+
 }());
