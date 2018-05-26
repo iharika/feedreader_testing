@@ -127,7 +127,6 @@ $(function () {
         //feedLength is the number of feed entries in feed.
         //It should be greater than 0 for this test to pass. 
         it('has atleast one initial element', function () {
-            // var feedLength = document.querySelectorAll('.feed .entry').length;
             var numberOfFeeds = document.querySelectorAll('article.entry').length;
             expect(numberOfFeeds).toBeGreaterThan(0);
         });
